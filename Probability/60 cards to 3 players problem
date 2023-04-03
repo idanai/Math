@@ -1,0 +1,37 @@
+
+A specific game is played with a deck of 60 unique cards and 3 players.
+Each player is dealt 20 cards at the start of the game.
+How many starting states of the game are there?
+I.e. how many combinations of
+
+The number of possible combinations, of sets of 20 cards is C(60, 20).
+* C(60, 20) is usage of the Combinations formula.
+* https://en.wikipedia.org/wiki/Combination
+
+Meaning: the first player to be dealt 20 cards, will get one of C(60, 20) (unique) possible sets.
+
+Thus leaving the other 2 players with 40 cards to be dealt.
+
+The second player will be dealt 20 cards, that are a set, which is unique out of C(40, 20) possible combinations.
+
+The last player is dealt the 20 cards left, which is only one combinations left (( C(20, 20) = 1 )).
+
+So:
+The first player is dealt 1 of C(60, 20) combinations.
+For each combination the first player can get, there are C(40, 20) other combinations that the second player can get.
+So we'll express it as such:
+
+C(60, 20) * C(40, 20)
+
+The third player is dealt the remaining cards, which is expressed as such C(20, 20), which equals 1.
+
+The answer to the problem is:
+Game_Starting_State_Combinations =
+= C(60, 20) * C(40, 20) * C(20, 20) =
+= C(60, 20) * C(40, 20) * 1 =
+= C(60, 20) * C(40, 20) =
+= 5.778312145×10²⁶ =
+= A VERY BIG NUMBER
+
+Summary:
+for each of the C(60, 20) sets the first player can be dealt, there are C(40, 20) possible sets that can be dealt to the second player. And for each of those sets dealt to the second player, there is only 1 possible set that can be dealt to the third player.
