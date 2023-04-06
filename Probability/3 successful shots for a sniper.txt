@@ -1,0 +1,83 @@
+Problem:
+
+A skilled sniper has a 0.9 probability of hitting a target.
+They decide to keep shooting until they hit the target exactly three times.
+What is the probability that the sniper will shoot exactly 5 times?
+
+0.9 * 4C2 * 0.9^2 * 0.1^2 =
+= 4C2 * 0.9^3 * 0.1^2 =
+= 0.04374
+
+But why?
+
+Let's represent each shot that the sniper hit & missed, with 1 & 0, respectively,
+and write down all the combinations of 5 shots (3 hits + 2 misses):
+
+00111
+01011
+01101
+01110
+10011
+10101
+10110
+11001
+11010
+11100
+
+However, if the sniper succeeded on the first three shots, then they would stop shooting,
+and therefore would only shoot three times, and not miss twice. These types of scenarios,
+where the final shot isn't a hit should be filtered out of the list above:
+
+00111
+01011
+01101
+10011
+10101
+11001
+
+We are left with less scenarios, totaling in 6.
+In these combinations, the common thing is that the last shot must not be a miss, because
+otherwise the sniper would stop shooting after the third shot.
+
+Now we will calculate the probability of each and sum them up:
+
+00111 => 0.1 * 0.1 * 0.9 * 0.9 * 0.9 = 0.00729
+01011 => 0.1 * 0.9 * 0.1 * 0.9 * 0.9 = 0.00729
+01101 => 0.1 * 0.9 * 0.9 * 0.1 * 0.9 = 0.00729
+10011 => 0.9 * 0.1 * 0.1 * 0.9 * 0.9 = 0.00729
+10101 => 0.9 * 0.1 * 0.9 * 0.1 * 0.9 = 0.00729
+11001 => 0.9 * 0.9 * 0.1 * 0.1 * 0.9 = 0.00729
+
+They are the same!
+Each one expresses =  0.9^3 * 0.1^2.
+
+Becasue the last shot, which always hits, is a common factor, we'll remove it for now:
+
+0011
+0101
+0110
+1001
+1010
+1100
+
+and the probability of each = 0.00729 / 0.9 = 0.0081
+
+What we get is all the combinations possible with two elements in a group of four.
+It can be expressed with the Binomial Combinations Formula: 4C2 = 4!/2!/2! = 6
+
+We can use Bernoulli's Distribution to get the probability getting any of these combinations:
+
+4C2 * 0.9^2 * 0.1^2 = 0.0081
+
+If we return the fifth shot, which always hits, than we multiply the probability of hitting
+on the fifth shot, which equals:
+
+0.9 * 0.0081 =
+= 0.9 * 4C2 * 0.9^2 * 0.1^2 =
+= 4C2 * 0.9^3 * 0.1^2 =
+= 0.04374
+
+We could also approach this calculaion by just multiplying directly the number of combinations,
+which is 4C2 = 6 by the probability of each combination, which we found to be 0.00729; So:
+
+4C2 * 0.00729 = 6 * 0.00729 = 0.04374
